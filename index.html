@@ -459,12 +459,38 @@
       font-size: 1.8rem; font-weight: 400;
       color: var(--teal-dark); margin-bottom: 24px;
     }
-    .yt-embed {
+    .yt-card {
+      display: block; position: relative;
       border-radius: 20px; overflow: hidden;
       box-shadow: 0 20px 60px rgba(45,95,110,0.2);
       aspect-ratio: 16/9;
+      text-decoration: none;
+      cursor: pointer;
     }
-    .yt-embed iframe { width: 100%; height: 100%; border: none; display: block; }
+    .yt-thumb {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+    .yt-card:hover .yt-thumb { transform: scale(1.03); filter: brightness(0.75); }
+    .yt-overlay {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 12px;
+      background: rgba(0,0,0,0.25);
+      transition: background 0.3s;
+    }
+    .yt-card:hover .yt-overlay { background: rgba(0,0,0,0.4); }
+    .yt-play-btn {
+      filter: drop-shadow(0 4px 20px rgba(0,0,0,0.5));
+      transition: transform 0.3s;
+    }
+    .yt-card:hover .yt-play-btn { transform: scale(1.12); }
+    .yt-label {
+      color: white; font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      opacity: 0.9;
+    }
 
     /* ── FOOTER ── */
     footer {
@@ -550,7 +576,7 @@
     <span class="section-tag">Sobre Nosotros</span>
     <h2 class="section-title">Más de dos décadas<br>cuidando tu esencia</h2>
     <div class="divider"></div>
-    <p>Somos especialistas en Microsemiótica Iridea, Iridología Contemporánea, Terapia Floral y Florales Cuánticos, Reflexología y MTC.<br><br>Con más de 20 años de experiencia, siempre buscamos mejorar nuestro conocimiento para ayudar a mejorar la salud y la calidad de vida de nuestros grupos de interés.</p>
+    <p>Doctor en Psicoanálisis y especialistas en Microsemiótica Iridea, Iridología Contemporánea, Terapia Floral y Florales Cuánticos, Reflexología y MTC.<br><br>Con más de 20 años de experiencia, siempre buscamos mejorar nuestro conocimiento para ayudar a mejorar la salud y la calidad de vida de nuestros grupos de interés.</p>
   </div>
   <div class="sobre-stats">
     <div class="stat-card">
@@ -558,7 +584,7 @@
       <div class="stat-label">Años de experiencia</div>
     </div>
     <div class="stat-card">
-      <div class="stat-num">6</div>
+      <div class="stat-num">7</div>
       <div class="stat-label">Especialidades</div>
     </div>
     <div class="stat-card">
@@ -620,7 +646,7 @@
         <li>Tratamientos florales</li>
       </ul>
       <br>
-      <p><strong style="color:var(--teal-dark)">📍 Servicio en Asunción, Paraguay</strong><br><span>Con cita previa — por WhatsApp</span></p>
+      <p><strong style="color:var(--teal-dark)">📍 Asunción · Ciudad del Este · Saltos del Guairá</strong><br><span>Con cita previa — por WhatsApp</span></p>
     </div>
   </div>
   <p class="esp-quote">
@@ -702,15 +728,24 @@
 
   <!-- YouTube -->
   <div class="yt-section">
-    <h3>🎬 Canal de YouTube</h3>
-    <div class="yt-embed">
-      <iframe
-        src="https://www.youtube.com/embed/IZO38QE0a4I"
-        title="G & G Terapias — YouTube"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
-    </div>
+    <h3>🎬 Conoce nuestro canal</h3>
+    <a href="https://www.youtube.com/watch?v=IZO38QE0a4I" target="_blank" class="yt-card">
+      <img
+        src="https://img.youtube.com/vi/IZO38QE0a4I/maxresdefault.jpg"
+        alt="¿Qué es la Iridología?"
+        class="yt-thumb"
+        onerror="this.src='https://img.youtube.com/vi/IZO38QE0a4I/hqdefault.jpg'"
+      >
+      <div class="yt-overlay">
+        <div class="yt-play-btn">
+          <svg viewBox="0 0 68 48" width="68" height="48">
+            <path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C56 0 34 0 34 0S12 0 7.5 1.7a8.5 8.5 0 0 0-6 6C0 12.1 0 24 0 24s0 11.9 1.5 16.3a8.5 8.5 0 0 0 6 6C12 48 34 48 34 48s22 0 26.5-1.7a8.5 8.5 0 0 0 6-6C68 35.9 68 24 68 24s0-11.9-1.5-16.3z" fill="#ff0000"/>
+            <path d="M27 34l18-10-18-10v20z" fill="#fff"/>
+          </svg>
+        </div>
+        <span class="yt-label">Ver en YouTube</span>
+      </div>
+    </a>
   </div>
 </section>
 
@@ -718,7 +753,7 @@
 <footer>
   <p><strong>G & G Terapias</strong> — Asunción, Paraguay</p>
   <p style="margin-top:8px">Microsemiótica Iridea · Iridología · Terapia Floral · Reflexología · MTC</p>
-  <p style="margin-top:8px">© 2025 G & G Terapias. Todos los derechos reservados.</p>
+  <p style="margin-top:8px">© 2026 G & G Terapias. Todos los derechos reservados.</p>
 </footer>
 
 </body>
