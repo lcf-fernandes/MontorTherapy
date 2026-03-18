@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>G & G Terapias</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sky: #cde8f4;
+      --sky-light: #e8f5fb;
+      --green-soft: #b8d8c8;
+      --green-mid: #7ab5a0;
+      --teal-dark: #2d5f6e;
+      --slate: #3d5a6e;
+      --slate-light: #6b8fa3;
+      --white: #ffffff;
+      --off-white: #f4f9fb;
+      --text-dark: #2a3f4e;
+      --text-mid: #4a6675;
+      --text-light: #7a9aaa;
+      --gold: #c5a96b;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--off-white);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 5%;
+      background: rgba(244,249,251,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(45,95,110,0.1);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo .eye-icon {
+      width: 40px; height: 40px;
+    }
+    .nav-logo .brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 600;
+      color: var(--teal-dark); letter-spacing: 0.05em;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-mid);
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--teal-dark); }
+    .nav-cta {
+      background: var(--teal-dark); color: var(--white) !important;
+      padding: 9px 22px; border-radius: 30px;
+      transition: background 0.3s, transform 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--green-mid) !important; transform: scale(1.04); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      background: linear-gradient(135deg, var(--sky) 0%, var(--sky-light) 55%, var(--green-soft) 100%);
+      position: relative; overflow: hidden;
+      padding: 100px 5% 60px;
+    }
+    .hero-bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hbc1 {
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(122,181,160,0.18) 0%, transparent 70%);
+      top: -200px; right: -200px;
+      animation: floatA 8s ease-in-out infinite;
+    }
+    .hbc2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(45,95,110,0.1) 0%, transparent 70%);
+      bottom: -100px; left: 10%;
+      animation: floatB 10s ease-in-out infinite;
+    }
+    @keyframes floatA { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-30px) scale(1.04)} }
+    @keyframes floatB { 0%,100%{transform:translateY(0)} 50%{transform:translateY(20px)} }
+
+    .hero-content {
+      flex: 1; max-width: 580px;
+      animation: fadeUp 1s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(30px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(45,95,110,0.12);
+      color: var(--teal-dark);
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 20px;
+      margin-bottom: 24px;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 300; line-height: 1.1;
+      color: var(--teal-dark);
+      margin-bottom: 16px;
+    }
+    .hero-title em { font-style: italic; font-weight: 400; color: var(--green-mid); }
+    .hero-subtitle {
+      font-size: 1rem; font-weight: 300; line-height: 1.7;
+      color: var(--text-mid); max-width: 480px;
+      margin-bottom: 40px;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--teal-dark); color: var(--white);
+      padding: 14px 30px; border-radius: 50px;
+      text-decoration: none; font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.06em;
+      box-shadow: 0 8px 30px rgba(45,95,110,0.3);
+      transition: all 0.3s;
+    }
+    .btn-primary:hover { background: var(--slate); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(45,95,110,0.4); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1.5px solid var(--teal-dark);
+      color: var(--teal-dark); padding: 13px 28px; border-radius: 50px;
+      text-decoration: none; font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.06em;
+      transition: all 0.3s;
+    }
+    .btn-outline:hover { background: var(--teal-dark); color: var(--white); }
+
+    .hero-logo-wrap {
+      flex: 0 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      padding-left: 60px;
+      animation: fadeUp 1.2s ease both;
+    }
+    .hero-logo-wrap img {
+      width: clamp(220px, 28vw, 380px);
+      filter: drop-shadow(0 20px 60px rgba(45,95,110,0.2));
+      animation: floatA 7s ease-in-out infinite;
+    }
+
+    /* ── SECTIONS COMMON ── */
+    section { padding: 90px 5%; }
+    .section-tag {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--green-mid);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400; color: var(--teal-dark);
+      line-height: 1.2; margin-bottom: 20px;
+    }
+    .divider {
+      width: 50px; height: 2px;
+      background: linear-gradient(to right, var(--green-mid), transparent);
+      margin-bottom: 30px;
+    }
+
+    /* ── SOBRE NOSOTROS ── */
+    #sobre {
+      background: var(--white);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: center;
+    }
+    .sobre-text p {
+      font-size: 1.05rem; line-height: 1.85; color: var(--text-mid); font-weight: 300;
+    }
+    .sobre-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    }
+    .stat-card {
+      background: linear-gradient(135deg, var(--sky-light), var(--sky));
+      border-radius: 16px; padding: 28px 24px;
+      border: 1px solid rgba(45,95,110,0.08);
+      transition: transform 0.3s;
+    }
+    .stat-card:hover { transform: translateY(-4px); }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem; font-weight: 600;
+      color: var(--teal-dark); line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label { font-size: 0.78rem; color: var(--text-mid); letter-spacing: 0.05em; }
+
+    /* ── IRIDOLOGIA ── */
+    #iridologia {
+      background: var(--text-dark);
+      padding: 90px 5%;
+    }
+    .irid-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: center;
+    }
+    .irid-img-wrap {
+      position: relative;
+      border-radius: 24px; overflow: hidden;
+    }
+    .irid-img-wrap img {
+      width: 100%; display: block;
+      border-radius: 24px;
+      filter: saturate(1.1) contrast(1.05);
+      transition: transform 0.6s ease;
+    }
+    .irid-img-wrap:hover img { transform: scale(1.03); }
+    .irid-img-glow {
+      position: absolute; inset: 0;
+      border-radius: 24px;
+      box-shadow: inset 0 0 60px rgba(122,181,160,0.25), 0 0 80px rgba(122,181,160,0.15);
+      pointer-events: none;
+    }
+    .irid-text .section-tag { color: var(--green-mid); }
+    .irid-text .section-title { color: var(--white); }
+    .irid-text .divider { background: linear-gradient(to right, var(--green-mid), transparent); }
+    .irid-lead {
+      font-size: 1rem; line-height: 1.75; font-weight: 300;
+      color: rgba(255,255,255,0.65); margin-bottom: 14px;
+    }
+    .irid-highlight {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-style: italic; font-weight: 300;
+      color: var(--green-mid);
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+      text-shadow: 0 0 40px rgba(122,181,160,0.4);
+    }
+    .irid-body {
+      font-size: 1rem; line-height: 1.8; font-weight: 300;
+      color: rgba(255,255,255,0.6);
+    }
+    @media (max-width: 900px) {
+      .irid-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    /* ── IRIDOLOGIA ── */
+    #iridologia {
+      background: var(--text-dark);
+      padding: 90px 5%;
+    }
+    .irid-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: center;
+    }
+    .irid-img-wrap {
+      position: relative;
+      border-radius: 24px; overflow: hidden;
+    }
+    .irid-img-wrap img {
+      width: 100%; display: block;
+      border-radius: 24px;
+      filter: saturate(1.1) contrast(1.05);
+      transition: transform 0.6s ease;
+    }
+    .irid-img-wrap:hover img { transform: scale(1.03); }
+    .irid-img-glow {
+      position: absolute; inset: 0;
+      border-radius: 24px;
+      box-shadow: inset 0 0 60px rgba(122,181,160,0.25), 0 0 80px rgba(122,181,160,0.15);
+      pointer-events: none;
+    }
+    .irid-text .section-tag { color: var(--green-mid); }
+    .irid-text .section-title { color: var(--white); }
+    .irid-text .divider { background: linear-gradient(to right, var(--green-mid), transparent); }
+    .irid-lead {
+      font-size: 1rem; line-height: 1.75; font-weight: 300;
+      color: rgba(255,255,255,0.65); margin-bottom: 14px;
+    }
+    .irid-highlight {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-style: italic; font-weight: 300;
+      color: var(--green-mid);
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+      text-shadow: 0 0 40px rgba(122,181,160,0.4);
+    }
+    .irid-body {
+      font-size: 1rem; line-height: 1.8; font-weight: 300;
+      color: rgba(255,255,255,0.6);
+    }
+    @media (max-width: 900px) {
+      .irid-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    /* ── ESPECIALIDADES ── */
+    #especialidades {
+      background: linear-gradient(180deg, var(--off-white) 0%, var(--sky-light) 100%);
+    }
+    .esp-header { text-align: center; max-width: 600px; margin: 0 auto 60px; }
+    .esp-header .divider { margin: 0 auto 30px; }
+    .esp-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+      max-width: 1100px; margin: 0 auto 60px;
+    }
+    .esp-card {
+      background: var(--white); border-radius: 20px;
+      padding: 36px 32px;
+      border: 1px solid rgba(45,95,110,0.08);
+      box-shadow: 0 4px 30px rgba(45,95,110,0.06);
+      transition: all 0.35s;
+      position: relative; overflow: hidden;
+    }
+    .esp-card::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: linear-gradient(to bottom, var(--green-mid), var(--teal-dark));
+    }
+    .esp-card:hover { transform: translateY(-6px); box-shadow: 0 16px 50px rgba(45,95,110,0.14); }
+    .esp-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--sky), var(--green-soft));
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; font-size: 1.4rem;
+    }
+    .esp-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem; font-weight: 600;
+      color: var(--teal-dark); margin-bottom: 14px;
+    }
+    .esp-card p, .esp-card ul {
+      font-size: 0.9rem; line-height: 1.75; color: var(--text-mid); font-weight: 300;
+    }
+    .esp-card ul { list-style: none; }
+    .esp-card ul li { padding: 4px 0; }
+    .esp-card ul li::before { content: '○ '; color: var(--green-mid); font-size: 0.7rem; }
+    .esp-card .badge {
+      display: inline-block;
+      background: rgba(122,181,160,0.15); color: var(--green-mid);
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 4px 12px; border-radius: 20px;
+      margin-bottom: 14px;
+    }
+    .esp-quote {
+      text-align: center; max-width: 680px; margin: 0 auto;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      font-style: italic; font-weight: 300;
+      color: var(--teal-dark); line-height: 1.5;
+    }
+
+    /* ── CONSULTAS / WHATSAPP ── */
+    #consultas {
+      background: var(--teal-dark);
+      text-align: center; padding: 80px 5%;
+    }
+    #consultas .section-title { color: var(--white); }
+    #consultas p { color: rgba(255,255,255,0.7); font-size: 1rem; margin-bottom: 36px; font-weight: 300; }
+    .wa-btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: #25D366; color: var(--white);
+      padding: 16px 38px; border-radius: 50px;
+      text-decoration: none; font-size: 0.95rem; font-weight: 500;
+      letter-spacing: 0.04em;
+      box-shadow: 0 10px 40px rgba(37,211,102,0.4);
+      transition: all 0.3s;
+    }
+    .wa-btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 16px 50px rgba(37,211,102,0.5); }
+    .wa-btn svg { width: 24px; height: 24px; fill: var(--white); }
+
+    /* ── TESTIMONIOS ── */
+    #comentarios { background: var(--white); }
+    .test-header { text-align: center; margin-bottom: 56px; }
+    .test-header .divider { margin: 0 auto 30px; }
+    .test-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .test-card {
+      background: linear-gradient(135deg, var(--sky-light), var(--off-white));
+      border-radius: 18px; padding: 32px 28px;
+      border: 1px solid rgba(45,95,110,0.07);
+      transition: transform 0.3s;
+      position: relative;
+    }
+    .test-card:hover { transform: translateY(-5px); }
+    .test-stars { color: var(--gold); font-size: 1rem; margin-bottom: 16px; letter-spacing: 3px; }
+    .test-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-style: italic; font-weight: 300;
+      line-height: 1.7; color: var(--text-dark);
+      margin-bottom: 20px;
+    }
+    .test-author { font-size: 0.8rem; font-weight: 600; color: var(--teal-dark); letter-spacing: 0.08em; }
+    .test-role { font-size: 0.75rem; color: var(--text-light); margin-top: 2px; }
+    .quote-mark {
+      position: absolute; top: 20px; right: 24px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem; line-height: 1;
+      color: rgba(45,95,110,0.07); font-weight: 700;
+      pointer-events: none;
+    }
+
+    /* ── REDES SOCIALES ── */
+    #redes {
+      background: linear-gradient(135deg, var(--sky-light), var(--green-soft) 60%, var(--sky));
+      text-align: center;
+    }
+    #redes .section-title { margin-bottom: 12px; }
+    #redes > p { color: var(--text-mid); margin-bottom: 48px; font-weight: 300; }
+    .redes-grid {
+      display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 64px;
+    }
+    .red-card {
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      background: var(--white); border-radius: 20px;
+      padding: 32px 28px; min-width: 160px;
+      text-decoration: none;
+      border: 1px solid rgba(45,95,110,0.08);
+      box-shadow: 0 4px 20px rgba(45,95,110,0.07);
+      transition: all 0.3s;
+    }
+    .red-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(45,95,110,0.15); }
+    .red-icon { width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; }
+    .red-icon svg { width: 28px; height: 28px; }
+    .red-ig { background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7); }
+    .red-ig svg { fill: white; }
+    .red-tk { background: #000; }
+    .red-tk svg { fill: white; }
+    .red-fb { background: #1877F2; }
+    .red-fb svg { fill: white; }
+    .red-name { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; color: var(--text-dark); text-transform: uppercase; }
+    .red-handle { font-size: 0.72rem; color: var(--text-light); }
+
+    /* ── YOUTUBE ── */
+    .yt-section { max-width: 800px; margin: 0 auto; }
+    .yt-section h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; font-weight: 400;
+      color: var(--teal-dark); margin-bottom: 24px;
+    }
+    .yt-embed {
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(45,95,110,0.2);
+      aspect-ratio: 16/9;
+    }
+    .yt-embed iframe { width: 100%; height: 100%; border: none; display: block; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text-dark);
+      color: rgba(255,255,255,0.5);
+      text-align: center; padding: 36px 5%;
+      font-size: 0.8rem; letter-spacing: 0.04em;
+    }
+    footer strong { color: rgba(255,255,255,0.8); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      #hero { flex-direction: column; text-align: center; padding-top: 120px; }
+      .hero-logo-wrap { padding-left: 0; padding-top: 40px; }
+      #sobre { grid-template-columns: 1fr; gap: 50px; }
+      .esp-grid { grid-template-columns: 1fr; }
+      .test-grid { grid-template-columns: 1fr; }
+      nav { padding: 14px 5%; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <svg class="eye-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="36" fill="#b8d8c8" opacity="0.5"/>
+      <circle cx="40" cy="40" r="28" fill="#b8d8c8" opacity="0.6"/>
+      <circle cx="40" cy="40" r="18" fill="#8ab5c8" opacity="0.7"/>
+      <circle cx="40" cy="40" r="12" fill="#3d5a6e"/>
+      <circle cx="44" cy="36" r="3" fill="white"/>
+      <!-- rays -->
+      <g stroke="#3d5a6e" stroke-width="1.5" stroke-linecap="round">
+        <line x1="40" y1="20" x2="40" y2="15"/>
+        <line x1="52" y1="24" x2="55" y2="20"/>
+        <line x1="60" y1="40" x2="65" y2="40"/>
+        <line x1="52" y1="56" x2="55" y2="60"/>
+        <line x1="40" y1="60" x2="40" y2="65"/>
+        <line x1="28" y1="56" x2="25" y2="60"/>
+        <line x1="20" y1="40" x2="15" y2="40"/>
+        <line x1="28" y1="24" x2="25" y2="20"/>
+      </g>
+      <!-- C-arc -->
+      <path d="M 68 20 A 36 36 0 1 0 68 60 L 68 52" stroke="#2d5f6e" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </svg>
+    <span class="brand">G & G Terapias</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Nosotros</a></li>
+    <li><a href="#especialidades">Especialidades</a></li>
+    <li><a href="#comentarios">Testimonios</a></li>
+    <li><a href="#redes">Redes</a></li>
+    <li><a href="https://wa.me/message/HBRONTRHKX3UE1" target="_blank" class="nav-cta">Consultar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-circle hbc1"></div>
+  <div class="hero-bg-circle hbc2"></div>
+  <div class="hero-content">
+    <span class="hero-badge">Bienestar Integral · Asunción, Paraguay</span>
+    <h1 class="hero-title">Tu salud,<br><em>vista desde adentro.</em></h1>
+    <p class="hero-subtitle">Iridología, Terapia Floral, Reflexología y más. Más de 20 años acompañando tu camino hacia el bienestar natural.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/message/HBRONTRHKX3UE1" target="_blank" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Consultar por WhatsApp
+      </a>
+      <a href="#especialidades" class="btn-outline">Ver especialidades</a>
+    </div>
+  </div>
+  <div class="hero-logo-wrap">
+    <img src="assets/logo.webp" alt="G & G Terapias Logo">
+  </div>
+</section>
+
+<!-- SOBRE NOSOTROS -->
+<section id="sobre">
+  <div class="sobre-text">
+    <span class="section-tag">Sobre Nosotros</span>
+    <h2 class="section-title">Más de dos décadas<br>cuidando tu esencia</h2>
+    <div class="divider"></div>
+    <p>Somos especialistas en Microsemiótica Iridea, Iridología Contemporánea, Terapia Floral y Florales Cuánticos, Reflexología y MTC.<br><br>Con más de 20 años de experiencia, siempre buscamos mejorar nuestro conocimiento para ayudar a mejorar la salud y la calidad de vida de nuestros grupos de interés.</p>
+  </div>
+  <div class="sobre-stats">
+    <div class="stat-card">
+      <div class="stat-num">20+</div>
+      <div class="stat-label">Años de experiencia</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">6</div>
+      <div class="stat-label">Especialidades</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">🌿</div>
+      <div class="stat-label">Terapias naturales</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">💻</div>
+      <div class="stat-label">Atención online & presencial</div>
+    </div>
+  </div>
+</section>
+
+<!-- IRIDOLOGIA -->
+<section id="iridologia">
+  <div class="irid-inner">
+    <div class="irid-img-wrap">
+      <img src="assets/iridologia.png" alt="Mapa del Iris — Iridología">
+      <div class="irid-img-glow"></div>
+    </div>
+    <div class="irid-text">
+      <span class="section-tag">La Ciencia del Iris</span>
+      <h2 class="section-title">Microsemiótica Iridea</h2>
+      <div class="divider"></div>
+      <p class="irid-lead">La Microsemiótica Iridea es una ciencia basada en el sistema más complejo y revelador de nuestro cuerpo:</p>
+      <p class="irid-highlight">La IRIS</p>
+      <p class="irid-body">El cuerpo humano siempre está enviando señales sobre su condición y su iris puede revelar un mapa detallado de esa condición.</p>
+    </div>
+  </div>
+</section>
+
+<section id="especialidades">
+  <div class="esp-header">
+    <span class="section-tag">Especialidades</span>
+    <h2 class="section-title">Nuestros servicios</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="esp-grid">
+    <!-- Online -->
+    <div class="esp-card">
+      <div class="esp-icon">💻</div>
+      <span class="badge">En Línea</span>
+      <h3>Atendimiento en Línea</h3>
+      <p>Análisis de la Íris — Iridología, se realiza a través de Videoconferencia, donde analizaremos su estado físico, mental y emocional y de acuerdo a este análisis, le recetaremos el mejor tratamiento a través de flores, vitaminas, etc.</p>
+      <br>
+      <p><strong style="color:var(--teal-dark)">📱 Agendamiento previo por WhatsApp</strong></p>
+    </div>
+    <!-- Presencial -->
+    <div class="esp-card">
+      <div class="esp-icon">🏥</div>
+      <span class="badge">Presencial · Asunción</span>
+      <h3>Atendimiento Presencial</h3>
+      <ul>
+        <li>Iridología</li>
+        <li>Reflexología</li>
+        <li>Auriculoterapia</li>
+        <li>Biorresonancia</li>
+        <li>Escáner cuántico</li>
+        <li>Tratamientos florales</li>
+      </ul>
+      <br>
+      <p><strong style="color:var(--teal-dark)">📍 Servicio en Asunción, Paraguay</strong><br><span>Con cita previa — por WhatsApp</span></p>
+    </div>
+  </div>
+  <p class="esp-quote">
+    "Descubre más sobre tu esencia con un especialista en Microsemiótica Iridía y rescata tu potencial natural."
+  </p>
+</section>
+
+<!-- CONSULTAS -->
+<section id="consultas">
+  <span class="section-tag" style="color:rgba(255,255,255,0.6)">Contacto</span>
+  <h2 class="section-title">¿Listo para comenzar<br>tu bienestar?</h2>
+  <p>Escríbenos directamente por WhatsApp y agendamos tu consulta.</p>
+  <a href="https://wa.me/message/HBRONTRHKX3UE1" target="_blank" class="wa-btn">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Consultar por WhatsApp
+  </a>
+</section>
+
+<!-- COMENTARIOS -->
+<section id="comentarios">
+  <div class="test-header">
+    <span class="section-tag">Testimonios</span>
+    <h2 class="section-title">Lo que dicen nuestros pacientes</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="quote-mark">"</div>
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">La sesión de iridología fue reveladora. Guillermo identificó problemas que ningún médico convencional había detectado. El tratamiento floral fue increíblemente efectivo.</p>
+      <div class="test-author">María L.</div>
+      <div class="test-role">Asunción, Paraguay</div>
+    </div>
+    <div class="test-card">
+      <div class="quote-mark">"</div>
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">La consulta online fue muy cómoda y profesional. Me hicieron el análisis del iris por videollamada y los resultados me ayudaron muchísimo a entender mi estado de salud.</p>
+      <div class="test-author">Carlos R.</div>
+      <div class="test-role">Buenos Aires, Argentina</div>
+    </div>
+    <div class="test-card">
+      <div class="quote-mark">"</div>
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">20 años de experiencia se notan. La combinación de reflexología y florales cuánticos transformó mi bienestar. Totalmente recomendado para quienes buscan medicina natural.</p>
+      <div class="test-author">Sofía M.</div>
+      <div class="test-role">Asunción, Paraguay</div>
+    </div>
+  </div>
+</section>
+
+<!-- REDES SOCIALES -->
+<section id="redes">
+  <span class="section-tag">Síguenos</span>
+  <h2 class="section-title">Nuestras Redes Sociales</h2>
+  <p>Contenido sobre bienestar, terapias y salud natural.</p>
+  <div class="redes-grid">
+    <a href="https://instagram.com/montortherapy?igshid=OGQ5ZDc2ODk2ZA==" target="_blank" class="red-card">
+      <div class="red-icon red-ig">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </div>
+      <div class="red-name">Instagram</div>
+      <div class="red-handle">@montortherapy</div>
+    </a>
+    <a href="http://tiktok.com/@guillermo.terapeuta" target="_blank" class="red-card">
+      <div class="red-icon red-tk">
+        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.36a8.16 8.16 0 004.77 1.52V7.43a4.85 4.85 0 01-1-.74z"/></svg>
+      </div>
+      <div class="red-name">TikTok</div>
+      <div class="red-handle">@guillermo.terapeuta</div>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61552669193493&mibextid=ZbWKwL" target="_blank" class="red-card">
+      <div class="red-icon red-fb">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </div>
+      <div class="red-name">Facebook</div>
+      <div class="red-handle">G & G Terapias</div>
+    </a>
+  </div>
+
+  <!-- YouTube -->
+  <div class="yt-section">
+    <h3>🎬 Canal de YouTube</h3>
+    <div class="yt-embed">
+      <iframe
+        src="https://www.youtube.com/embed/IZO38QE0a4I"
+        title="G & G Terapias — YouTube"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>G & G Terapias</strong> — Asunción, Paraguay</p>
+  <p style="margin-top:8px">Microsemiótica Iridea · Iridología · Terapia Floral · Reflexología · MTC</p>
+  <p style="margin-top:8px">© 2025 G & G Terapias. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>
